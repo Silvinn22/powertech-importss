@@ -32,8 +32,18 @@ export function AdminDashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    loadProducts();
+    checkAuth();
   }, []);
+
+  async function checkAuth() {
+    const supabase = getSupabase();
+    const { data } = await supabase.auth.getSession();
+    if (!data.session) {
+      router.push("/admin");
+      return;
+    }
+    loadProducts();
+  }
 
   async function loadProducts() {
     const supabase = getSupabase();

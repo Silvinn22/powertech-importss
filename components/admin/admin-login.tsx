@@ -17,19 +17,29 @@ export function AdminLogin() {
     setLoading(true);
     setError("");
 
-    const supabase = getSupabase();
-    const { error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
+    try {
+      const supabase = getSupabase();
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
 
-    if (authError) {
-      setError("Email ou senha incorretos.");
+      if (authError) {
+        setError("Email ou senha incorretos.");
+        setLoading(false);
+        return;
+      }
+
+      if (data.session) {
+        window.location.href = "/admin/dashboard";
+      } else {
+        setError("Falha ao criar sessão. Tente novamente.");
+        setLoading(false);
+      }
+    } catch {
+      setError("Erro de conexão. Tente novamente.");
       setLoading(false);
-      return;
     }
-
-    router.push("/admin/dashboard");
   }
 
   return (
