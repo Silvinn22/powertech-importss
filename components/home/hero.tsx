@@ -56,8 +56,8 @@ export function Hero() {
             {siteConfig.name} · {siteConfig.city}, {siteConfig.stateCode}
           </p>
           <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]">
-            <span className="hero-gradient-text">O próximo smartphone</span>
-            <span className="block hero-gradient-text">está aqui.</span>
+            <span className="hero-gradient-text">Os melhores preços em</span>
+            <span className="block hero-gradient-text">celulares e acessórios.</span>
             <span className="mt-2 block text-brand-muted">Atendimento pelo WhatsApp.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-brand-muted lg:mx-0">
@@ -96,7 +96,7 @@ export function Hero() {
               style={{ transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
             >
               <Image
-                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85"
+                src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=1200&q=85"
                 alt="Celulares e acessórios premium"
                 fill
                 priority
