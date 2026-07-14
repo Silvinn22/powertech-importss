@@ -139,6 +139,25 @@ export const products: Product[] = [
       Proteção: "Contra sobrecarga"
     },
     createdAt: "2026-06-18"
+  },
+  {
+    id: "7",
+    slug: "xiaomi-15c-256gb",
+    name: "Xiaomi 15C 256GB",
+    description: "Smartphone Xiaomi com tela ampla, câmera de alta qualidade e 256GB de armazenamento para todos os seus apps e fotos.",
+    category: "celulares",
+    price: 1320,
+    stock: 20,
+    featured: true,
+    bestSeller: false,
+    images: ["/xiaomi-15c.png"],
+    specs: {
+      Armazenamento: "256GB",
+      Câmera: "50MP",
+      Bateria: "5160mAh",
+      Tela: "6.88 polegadas"
+    },
+    createdAt: "2026-07-14"
   }
 ];
 
