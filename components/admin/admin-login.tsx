@@ -36,8 +36,9 @@ export function AdminLogin() {
         setError("Falha ao criar sessão. Tente novamente.");
         setLoading(false);
       }
-    } catch {
-      setError("Erro de conexão. Tente novamente.");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Erro desconhecido";
+      setError(`Erro de conexão: ${msg}`);
       setLoading(false);
     }
   }
