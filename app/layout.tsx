@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import { Header } from "@/components/layout/header";
@@ -10,6 +10,10 @@ import "./globals.css";
 
 const GA_ID = "G-8RT539C0HQ";
 
+export const viewport: Viewport = {
+  themeColor: "#ffffff"
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -20,7 +24,6 @@ export const metadata: Metadata = {
   keywords: ["celulares", "smartphones", "acessórios", "Blumenau", "Santa Catarina", "WhatsApp", "iPhone", "Samsung", "tech"],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
-  themeColor: "#ffffff",
   icons: {
     icon: "/favicon.svg",
     apple: "/logo.png"
