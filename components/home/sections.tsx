@@ -1,11 +1,21 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { CreditCard, Headphones, MapPin, MessageCircle, PackageCheck, ShieldCheck, Star } from "lucide-react";
 import { ProductCard } from "@/components/product/product-card";
+import type { Product } from "@/types";
 import { getFeaturedProducts } from "@/lib/catalog";
 import { deliveryLabels, paymentLabels, siteConfig, whatsappUrl } from "@/lib/constants";
 import { Button } from "@/components/ui-button";
 import { FadeIn } from "@/components/ui-fade-in";
 
 export function FeaturedProducts() {
+  const [featured, setFeatured] = useState<Product[]>([]);
+
+  useEffect(() => {
+    getFeaturedProducts().then(setFeatured);
+  }, []);
+
   return (
     <section className="container-page py-16 lg:py-20">
       <FadeIn>
@@ -16,7 +26,7 @@ export function FeaturedProducts() {
         />
       </FadeIn>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {getFeaturedProducts().map((product, i) => (
+        {featured.map((product, i) => (
           <FadeIn key={product.id} delay={i * 80}>
             <ProductCard product={product} />
           </FadeIn>

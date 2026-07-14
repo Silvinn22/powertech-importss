@@ -1,9 +1,11 @@
-import { AdminDashboard } from "@/components/admin/admin-dashboard";
+import { AdminLogin } from "@/components/admin/admin-login";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Painel administrativo"
 };
 
 export default function AdminPage() {
-  return <AdminDashboard />;
+  return <AdminLogin />;
 }

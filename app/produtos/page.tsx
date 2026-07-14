@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ProductCard } from "@/components/product/product-card";
-import { categories, products } from "@/lib/catalog";
+import { categories, listProducts } from "@/lib/catalog";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Catálogo",
@@ -11,7 +13,8 @@ export const metadata: Metadata = {
 export default async function ProductsPage({ searchParams }: { searchParams?: Promise<{ categoria?: string }> }) {
   const resolvedSearchParams = await searchParams;
   const selectedCategory = resolvedSearchParams?.categoria;
-  const filteredProducts = selectedCategory ? products.filter((product) => product.category === selectedCategory) : products;
+  const allProducts = await listProducts();
+  const filteredProducts = selectedCategory ? allProducts.filter((product) => product.category === selectedCategory) : allProducts;
 
   return (
     <section className="container-page py-12 lg:py-16">

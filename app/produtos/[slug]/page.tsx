@@ -2,15 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductDetails } from "@/components/product/product-details";
 import { ProductCard } from "@/components/product/product-card";
-import { getProductBySlug, getRelatedProducts, products } from "@/lib/catalog";
+import { getProductBySlug, getRelatedProducts } from "@/lib/catalog";
 
-export function generateStaticParams() {
-  return products.map((product) => ({ slug: product.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) return {};
   return {
     title: product.name,
@@ -25,9 +23,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
-  const related = getRelatedProducts(product);
+  const related = await getRelatedProducts(product);
 
   return (
     <section className="container-page py-10 lg:py-14">

@@ -1,14 +1,22 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { MessageCircle } from "lucide-react";
+import type { Product } from "@/types";
 import { getFeaturedProducts } from "@/lib/catalog";
 import { formatCurrency } from "@/utils/format";
 import { productWhatsappMessage, whatsappUrl } from "@/lib/constants";
 import { FadeIn } from "@/components/ui-fade-in";
 
 export function Highlights() {
-  const featured = getFeaturedProducts();
+  const [featured, setFeatured] = useState<Product[]>([]);
+
+  useEffect(() => {
+    getFeaturedProducts().then(setFeatured);
+  }, []);
+
+  if (featured.length === 0) return null;
 
   return (
     <section className="bg-brand-surface py-20 lg:py-28">

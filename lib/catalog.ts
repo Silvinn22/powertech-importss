@@ -1,4 +1,5 @@
 import type { Category, Product } from "@/types";
+import { getSupabase } from "@/lib/supabase";
 
 export const categories: Category[] = [
   {
@@ -31,7 +32,7 @@ export const categories: Category[] = [
   }
 ];
 
-export const products: Product[] = [
+export const fallbackProducts: Product[] = [
   {
     id: "1",
     slug: "iphone-15-pro-256gb",
@@ -161,18 +162,87 @@ export const products: Product[] = [
   }
 ];
 
-export function getFeaturedProducts() {
-  return products.filter((product) => product.featured).slice(0, 4);
+export async function listProducts(): Promise<Product[]> {
+  try {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("visible", true)
+      .order("created_at", { ascending: false });
+
+    if (error || !data || data.length === 0) {
+      return fallbackProducts;
+    }
+
+    return data.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      name: p.name,
+      description: p.description,
+      category: p.category,
+      price: Number(p.price),
+      promotionalPrice: p.promotional_price ? Number(p.promotional_price) : undefined,
+      stock: p.stock,
+      images: p.images,
+      specs: p.specs,
+      featured: p.featured,
+      bestSeller: p.best_seller,
+      createdAt: p.created_at
+    }));
+  } catch {
+    return fallbackProducts;
+  }
 }
 
-export function getBestSellers() {
-  return products.filter((product) => product.bestSeller).slice(0, 4);
+export async function listAllProducts(): Promise<Product[]> {
+  try {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error || !data || data.length === 0) {
+      return fallbackProducts;
+    }
+
+    return data.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      name: p.name,
+      description: p.description,
+      category: p.category,
+      price: Number(p.price),
+      promotionalPrice: p.promotional_price ? Number(p.promotional_price) : undefined,
+      stock: p.stock,
+      images: p.images,
+      specs: p.specs,
+      featured: p.featured,
+      bestSeller: p.best_seller,
+      createdAt: p.created_at
+    }));
+  } catch {
+    return fallbackProducts;
+  }
 }
 
-export function getProductBySlug(slug: string) {
-  return products.find((product) => product.slug === slug);
+export async function getFeaturedProducts(): Promise<Product[]> {
+  const all = await listProducts();
+  return all.filter((p) => p.featured).slice(0, 4);
 }
 
-export function getRelatedProducts(product: Product) {
-  return products.filter((item) => item.category === product.category && item.id !== product.id).slice(0, 3);
+export async function getBestSellers(): Promise<Product[]> {
+  const all = await listProducts();
+  return all.filter((p) => p.bestSeller).slice(0, 4);
+}
+
+export async function getProductBySlug(slug: string): Promise<Product | undefined> {
+  const all = await listProducts();
+  return all.find((p) => p.slug === slug);
+}
+
+export async function getRelatedProducts(product: Product): Promise<Product[]> {
+  const all = await listProducts();
+  return all.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
 }
