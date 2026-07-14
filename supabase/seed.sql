@@ -31,6 +31,6 @@ INSERT INTO public.products (name, slug, description, category, price, promotion
  true, false, true),
 
 ('Xiaomi 15C 256GB', 'xiaomi-15c-256gb', 'Smartphone Xiaomi com tela ampla, câmera de alta qualidade e 256GB de armazenamento para todos os seus apps e fotos.', 'celulares', 1320, NULL, 20,
- ARRAY['/xiaomi-15c.png'],
+ ARRAY['/xiaomi-15c.webp'],
  '{"Armazenamento":"256GB","Câmera":"50MP","Bateria":"5160mAh","Tela":"6.88 polegadas"}',
  true, true, false);

@@ -151,7 +151,7 @@ export const fallbackProducts: Product[] = [
     stock: 20,
     featured: true,
     bestSeller: false,
-    images: ["/xiaomi-15c.png"],
+    images: ["/xiaomi-15c.webp"],
     specs: {
       Armazenamento: "256GB",
       Câmera: "50MP",
