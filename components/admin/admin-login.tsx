@@ -3,14 +3,12 @@
 import { useState } from "react";
 import { Lock } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
-import { useRouter } from "next/navigation";
 
 export function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();

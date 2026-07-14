@@ -1,4 +1,5 @@
 import { TrendingUp, Star, Users } from "lucide-react";
+import styles from "./stats.module.css";
 
 const metrics = [
   {
@@ -47,21 +48,21 @@ export function Stats() {
           {metrics.map((m, i) => {
             const Icon = icons[i];
             return (
-              <div key={m.caption} className="mf-metric">
-                <div className="mf-metric__head">
-                  <p className="mf-metric__eyebrow">{m.eyebrow}</p>
-                  <span className="mf-metric__pill">
+              <div key={m.caption} className={styles.metric}>
+                <div className={styles.head}>
+                  <p className={styles.eyebrow}>{m.eyebrow}</p>
+                  <span className={styles.pill}>
                     <Icon size={12} />
                     {m.pill}
                   </span>
                 </div>
-                <p className="mf-metric__value">{m.value}</p>
-                <p className="mf-metric__caption">{m.caption}</p>
-                <div className="mf-metric__chart">
+                <p className={styles.value}>{m.value}</p>
+                <p className={styles.caption}>{m.caption}</p>
+                <div className={styles.chart}>
                   {m.bars.map((h, barIndex) => (
                     <div
                       key={barIndex}
-                      className={`mf-metric__bar ${barIndex === m.accent ? "mf-metric__bar--accent" : ""}`}
+                      className={`${styles.bar} ${barIndex === m.accent ? styles.barAccent : ""}`}
                       style={{ height: `${h}%` }}
                     />
                   ))}

@@ -1,5 +1,5 @@
 import type { CartItem, CustomerOrder } from "@/types";
-import { siteConfig } from "@/lib/constants";
+import { whatsappUrl } from "@/lib/constants";
 import { formatCurrency } from "@/utils/format";
 
 export function buildWhatsAppOrderUrl(customer: CustomerOrder, items: CartItem[]) {
@@ -25,5 +25,5 @@ export function buildWhatsAppOrderUrl(customer: CustomerOrder, items: CartItem[]
     `Total: ${formatCurrency(total)}`
   ].join("\n");
 
-  return `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;
+  return whatsappUrl(message);
 }

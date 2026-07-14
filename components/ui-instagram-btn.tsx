@@ -1,5 +1,7 @@
 "use client";
 
+import styles from "@/components/instagram-btn.module.css";
+
 type InstagramBtnProps = {
   href: string;
   className?: string;
@@ -12,12 +14,12 @@ export function InstagramBtn({ href, className = "", size = 45 }: InstagramBtnPr
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`ig-btn ${className}`}
+      className={`${styles.igBtn} ${className}`}
       aria-label="Instagram"
       style={{ width: size, height: size }}
     >
-      <span className="ig-btn__bg" />
-      <span className="ig-btn__inner">
+      <span className={styles.bg} />
+      <span className={styles.inner}>
         <svg
           viewBox="0 0 24 24"
           width={size * 0.45}
