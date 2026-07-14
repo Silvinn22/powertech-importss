@@ -1,22 +1,16 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const SUPABASE_URL = "https://pegrchicjdtdfulepjql.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBlZ3JjaGljamR0ZGZ1bGVwanFsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQwNDQzMTMsImV4cCI6MjA5OTYyMDMxM30.fG7UiPMOSTcTQwYV8vXb1Yv5mlAbx14w8vODFP9LpK8";
 
 let browserClient: SupabaseClient | null = null;
 
 export function getSupabase() {
   if (typeof window === "undefined") {
-    return createClient(supabaseUrl, supabaseAnonKey);
+    return createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
   if (!browserClient) {
-    browserClient = createClient(supabaseUrl, supabaseAnonKey);
+    browserClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
   return browserClient;
-}
-
-export function getSupabaseAdmin() {
-  if (!supabaseServiceKey) return null;
-  return createClient(supabaseUrl, supabaseServiceKey);
 }
