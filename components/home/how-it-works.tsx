@@ -29,8 +29,8 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="container-page py-16 lg:py-20">
-      <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+    <section className="bg-brand-surface py-16 lg:py-20">
+      <div className="container-page grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <FadeIn>
           <SectionTitle
             kicker="Como funciona"
