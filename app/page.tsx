@@ -1,5 +1,5 @@
 import { Categories } from "@/components/home/categories";
-import { Hero } from "@/components/home/hero";
+import { HeroScroll } from "@/components/home/hero-scroll";
 import { Highlights } from "@/components/home/highlights";
 import { Stats } from "@/components/home/stats";
 import { FeaturedProducts } from "@/components/home/featured-products";
@@ -11,7 +11,7 @@ import { WhatsAppCta } from "@/components/home/whatsapp-cta";
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <HeroScroll />
       <Highlights />
       <FeaturedProducts />
       <Categories />
